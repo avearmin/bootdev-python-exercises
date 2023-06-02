@@ -8,16 +8,19 @@ class Stack:
         self.arrows = []
 
     def push(self, arrow):
-        # ?
+        self.arrows.append(arrow)
 
-    def pop(self):
-        # ?
+    def pop(self):                   # while I could have used Python's built-in method for lists 'pop()', 
+        if len(self.arrows) > 0:     # I felt for purposes of the exercise it was better to write one myself
+            temp = self.arrows[-1]
+            del self.arrows[-1]
+            return temp
 
     def peek(self):
-        # ?
+        return self.arrows[-1]
 
     def size(self):
-        # ?
+        return len(self.arrows)
 
 
 # don't touch below this line
