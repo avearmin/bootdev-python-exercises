@@ -4,7 +4,7 @@ import random
 
 
 def last_item(inventory):
-    # ?
+    return inventory[-1]
 
 
 # don't touch below this line
