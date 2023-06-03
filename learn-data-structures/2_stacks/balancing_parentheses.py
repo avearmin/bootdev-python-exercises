@@ -1,5 +1,13 @@
 def is_balanced(input_str):
-    # ?
+    stack = Stack()
+    for char in input_str:
+        if char == ')' and stack.peek() is None:
+            return False
+        elif char == '(':
+            stack.push(char)
+        elif char == ')':
+            stack.pop()
+    return stack.peek() is None
 
 
 # don't modify below this line
