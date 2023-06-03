@@ -22,8 +22,10 @@ class Stack:
 # don't modify above this line
 
 
-class PotionStack():
-    # ?
+class PotionStack(Stack):
+    def push(self, potion):
+        if potion != self.peek():
+            self.items.append(potion)
 
 
 # don't modify below this line
