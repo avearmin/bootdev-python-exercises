@@ -1,9 +1,12 @@
 class LinkedList:
     def __init__(self):
-        # ?
+        self.head = None
 
     def __iter__(self):
-        # ?
+        current_node = self.head
+        while current_node is not None:
+            yield current_node
+            current_node = current_node.next
 
     # don't touch below this line
 
