@@ -1,7 +1,14 @@
 # link to exercise: https://boot.dev/course/7bbb53ed-2106-4f6b-b885-e7645c2ff9d8/a96ca39e-3b99-4a7a-ad9b-37c8e1a61ff6/cd2268ff-f75b-4e02-ae47-148818efced1
 
 def matchmake(queue, player):
-    # ?
+    player_name = player[0]
+    player_action = player[1]
+    if player_action == 'join':
+        queue.push(player_name)
+    if queue.size() >= 4:
+        print(f"{queue.pop()} matched {queue.pop()}!")
+    if player_action == 'leave':
+        queue.search_and_remove(player[0])
 
 
 # don't touch below this line
