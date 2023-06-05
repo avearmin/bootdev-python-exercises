@@ -8,6 +8,7 @@ class LLQueue:
     def add_to_head(self, node):
         if self.head == None:
             self.head = node
+            self.tail = node
             return
         node.set_next(self.head)
         self.head = node
@@ -15,14 +16,14 @@ class LLQueue:
     def add_to_tail(self, node):
         if self.head == None:
             self.head = node
+            self.tail = node
             return
-        last_node = None
-        for current_node in self:
-            last_node = current_node
-        last_node.set_next(node)
+        self.tail.set_next(node)
+        self.tail = node
 
     def __init__(self):
         self.head = None
+        self.tail = None
 
     # don't touch below this line
 
