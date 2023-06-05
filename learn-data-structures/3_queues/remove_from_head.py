@@ -1,8 +1,12 @@
 # link to exercise: https://boot.dev/course/7bbb53ed-2106-4f6b-b885-e7645c2ff9d8/a96ca39e-3b99-4a7a-ad9b-37c8e1a61ff6/a901fb8e-f07c-43e1-9bf4-289a5f391667
 
-class LinkedList:
+class LLQueue:
     def remove_from_head(self):
-        # ?
+        if self.head is None:
+            return None
+        node = self.head
+        self.head = self.head.next
+        return node
 
     # don't touch below this line
 
