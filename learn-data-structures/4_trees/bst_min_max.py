@@ -5,10 +5,17 @@ import random
 
 class BSTNode:
     def get_min(self):
-        # ?
+        node = self
+        while node.left is not None:
+            node = node.left
+        return node.val
+            
 
     def get_max(self):
-        # ?
+        node = self
+        while node.right is not None:
+            node = node.right
+        return node.val
 
         # don't touch below this line
 
