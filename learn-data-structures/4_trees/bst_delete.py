@@ -5,7 +5,35 @@ import random
 
 class BSTNode:
     def delete(self, val):
-        # ?
+        if self.val is None:
+            return None
+
+        if val < self.val:
+            if self.left is not None:
+                self.left = self.left.delete(val)
+            return self
+
+        if val > self.val:
+            if self.right is not None:
+                self.right = self.right.delete(val)
+            return self
+
+        if val == self.val:
+            if self.right is None:
+                return self.left
+            if self.left is None:
+                return self.right
+            min_larger_val = self.__get_min_larger_val(val)
+            self.val = min_larger_val.val
+            self.right = self.right.delete(min_larger_val.val)
+        
+        return self
+                
+    def __get_min_larger_val(self, val):
+        node = self.right
+        while node.left:
+            node = node.left
+        return node
 
         # don't touch below this line
 
