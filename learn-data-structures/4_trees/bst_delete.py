@@ -23,13 +23,13 @@ class BSTNode:
                 return self.left
             if self.left is None:
                 return self.right
-            min_larger_val = self.__get_min_larger_val(val)
-            self.val = min_larger_val.val
-            self.right = self.right.delete(min_larger_val.val)
+            min_larger_node = self.__get_min_larger_node(val)
+            self.val = min_larger_node.val
+            self.right = self.right.delete(min_larger_node.val)
         
         return self
                 
-    def __get_min_larger_val(self, val):
+    def __get_min_larger_node(self, val):
         node = self.right
         while node.left:
             node = node.left
