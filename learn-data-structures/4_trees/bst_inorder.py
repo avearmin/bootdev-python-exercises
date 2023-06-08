@@ -5,7 +5,13 @@ import random
 
 class BSTNode:
     def inorder(self, visited):
-        # ?
+        if self.left is not None:
+            self.left.inorder(visited)
+        if self.val is not None:
+            visited.append(self.val)
+        if self.right is not None:
+            self.right.inorder(visited)
+        return visited
 
     # don't touch below this line
 
