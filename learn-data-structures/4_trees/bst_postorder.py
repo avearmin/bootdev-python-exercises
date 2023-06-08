@@ -5,7 +5,12 @@ import random
 
 class BSTNode:
     def postorder(self, visited):
-        # ?
+        if self.left is not None:
+            self.left.postorder(visited)
+        if self.right is not None:
+            self.right.postorder(visited)
+        visited.append(self.val)
+        return visited
 
     # don't touch below this line
 
