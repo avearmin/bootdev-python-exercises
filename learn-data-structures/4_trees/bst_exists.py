@@ -5,7 +5,16 @@ import random
 
 class BSTNode:
     def exists(self, val):
-        # ?
+        if self.val == val:
+            return True
+
+        if val < self.val and self.left is not None:
+            return self.left.exists(val)
+
+        if val > self.val and self.right is not None:
+            return self.right.exists(val)
+
+        return False
 
         # don't touch below this line
 
