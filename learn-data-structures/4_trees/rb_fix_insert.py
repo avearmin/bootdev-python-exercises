@@ -43,10 +43,55 @@ class RBTree:
         else:
             parent.right = new_node
 
-        # ?
+        if new_node == self.root:
+            new_node.red = False
+            return
+        if new_node.parent.parent == None:
+            return
+        self.fix_insert(new_node)
+        
 
     def fix_insert(self, new_node):
-        # ?
+        while new_node != self.root and new_node.parent.red == True:
+            grandparent = new_node.parent.parent
+            if grandparent.right == new_node.parent:
+                uncle = grandparent.left
+                
+                if uncle.red == True:
+                    uncle.red = False
+                    new_node.parent.red = False
+                    grandparent.red = True
+                    new_node = grandparent
+
+                else:
+                    if new_node.parent.left == new_node:
+                        new_node = new_node.parent
+                        self.rotate_right(new_node)
+
+                    new_node.parent.red = False
+                    grandparent.red = True
+                    self.rotate_left(grandparent)
+
+            else:
+                uncle = grandparent.right
+
+                if uncle.red == True:
+                    uncle.red = False
+                    new_node.parent.red = False
+                    grandparent.red = True
+                    new_node = grandparent
+
+                else:
+                    if new_node.parent.right == new_node:
+                        new_node = new_node.parent
+                        self.rotate_left(new_node)
+
+                    new_node.parent.red = False
+                    grandparent.red = True
+                    self.rotate_right(grandparent)
+
+        self.root.red = False
+
 
     def exists(self, val):
         curr = self.root
