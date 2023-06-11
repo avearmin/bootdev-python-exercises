@@ -5,7 +5,24 @@ import random
 
 class BSTNode:
     def height(self):
-        # ?
+        if self == None: # If the current node is None, it represents an empty tree, 
+            return 0     # so its height is 0.
+        
+        left_count = 0 # Initalize our left count at 0.
+        if self.left:
+            left_count = self.left.height() # Recursively calculates the left subtree.
+        
+        right_count = 0 # Initalize our right count at 0.
+        if self.right:
+            right_count = self.right.height() # Recursively calculates the right subtree.
+
+        return max(left_count, right_count) + 1 # Our method resloves after each branch
+                                                # has been fully explored. We return the larger
+                                                # value + 1 to account for the longest branch +
+                                                # its root node. It should be noted that when a 
+                                                # node has no branches of its own, it is the end 
+                                                # of its parent branch and simply returns as 1 
+                                                # max(0, 0) + 1.
 
     # don't touch below this line
 
