@@ -2,7 +2,9 @@
 
 class HashMap:
     def get(self, key):
-        # ?
+        if self.hashmap[self.key_to_index(key)] == None:
+            raise Exception("sorry, key not found")
+        return self.hashmap[self.key_to_index(key)][1]
 
     # don't touch below this line
 
