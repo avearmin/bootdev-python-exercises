@@ -2,7 +2,10 @@
 
 class HashMap:
     def key_to_index(self, key):
-        # ?
+        sum = 0
+        for char in key:
+            sum += ord(char)
+        return sum % len(self.hashmap)
 
     # don't touch below this line
 
