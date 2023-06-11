@@ -2,7 +2,7 @@
 
 class HashMap:
     def insert(self, key, value):
-        # ?
+        self.hashmap[self.key_to_index(key)] = (key, value)
 
     # don't touch below this line
 
