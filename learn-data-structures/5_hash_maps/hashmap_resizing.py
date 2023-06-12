@@ -2,16 +2,27 @@
 
 class HashMap:
     def insert(self, key, value):
-        # ?
-
+        self.resize()
         index = self.key_to_index(key)
         self.hashmap[index] = (key, value)
 
     def resize(self):
-        # ?
-
+        if len(self.hashmap) == 0: # If the hashmap size is 0, we resize it to 1.
+            self.hashmap.append(None)
+            return
+        load = self.current_load()
+        if load >= .05:                                    # If the current load is greater/equal to 5%
+            new_hashmap = HashMap(len(self.hashmap) * 10)  # we create a new hashmap that's 10x the size of the current.
+            for key_value_pair in self.hashmap:            # Then we insert all key value pairs from the old into the new.
+                if key_value_pair:
+                    new_hashmap.insert(key_value_pair[0], key_value_pair[1])
+            self.hashmap = new_hashmap.hashmap # Our new hashmap is complete, and we replace the old one with the new one
+        
     def current_load(self):
-        # ?
+        if len(self.hashmap) == 0:
+            return 1
+        filled_pairs = sum(key_value_pair is not None for key_value_pair in self.hashmap)
+        return filled_pairs / len(self.hashmap)
 
     # don't touch below this line
 
