@@ -5,8 +5,13 @@ import json
 
 class Trie:
     def exists(self, word):
-        # ?
-
+        current = self.root
+        for char in word: # Loop over each nested dictionary in the trie associated with the letters in the word.
+            if char not in current:
+                return False # If you get to a character that doesn't exist in the trie, return False.
+            current = current[char]
+        return self.end_symbol in current # Once you get to the last letter, return True 
+                                          # if end_symbol is in its dictionary, and False if it isn't.
     # don't touch below this line
 
     def add(self, word):
