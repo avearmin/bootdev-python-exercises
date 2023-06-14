@@ -5,10 +5,23 @@ import json
 
 class Trie:
     def words_with_prefix(self, prefix):
-        # ?
+        words = [] # Create an empty list to hold the words.
+        current = self.root
+        for char in prefix: # Traverse the trie.
+            if char not in current: # If the prefix is not in the trie, return an empty list.
+                return words
+            current = current[char] # If the loop successfully completes, current should point to last char of the prefix
+        return self.search_level(current, prefix, words)
 
     def search_level(self, cur, cur_prefix, words):
-        # ?
+        if self.end_symbol in cur: # If an end symbol is in cur, cur_prefix cotains a completed word
+            words.append(cur_prefix)
+        
+        for key in sorted(cur): # Iterate over each key in a deterministic order
+            if key != self.end_symbol:
+                self.search_level(cur[key], cur_prefix + key, words) # recursively call search_level on the next level 
+                                                                     # with cur_prefix including the key we just traversed.
+        return words
 
     # don't touch below this line
 
