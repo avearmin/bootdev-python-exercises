@@ -5,7 +5,16 @@ import json
 
 class Trie:
     def find_matches(self, document):
-        # ?
+        matches = set() # Create a new set() to store the matches.
+        for i in range(len(document)): # Loop over all the indexes of the characters in the document. Tracks the start of a substring.
+            level = self.root # The current level of the trie, initalized to the root.
+            for j in range(i, len(document)): # Loop over all the indexes of characters in the document, starting at the current outer index. Tracks the end of a substring.
+                if document[j] not in level: # If a character is not in the level, no matches were found and we break out the inner loop.
+                    break
+                level = level[document[j]]
+                if self.end_symbol in level: # If we find the end symbol, then we found a matching word. Add it to the set.
+                    matches.add(document[i : j + 1]) # Calculate the word by slicing the document based on our outer and inner indexes.
+        return matches
 
     # don't touch below this line
 
