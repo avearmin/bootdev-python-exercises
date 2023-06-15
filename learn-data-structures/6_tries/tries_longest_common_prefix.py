@@ -5,7 +5,32 @@ import json
 
 class Trie:
     def longest_common_prefix(self):
-        # ?
+        current = self.root
+        prefix = ""
+        while True:
+            # Iterate over the keys (children) of the current node.
+            # Exclude the end symbol from consideration.
+            children = []
+            for key in current.keys():
+                if key != self.end_symbol:
+                    # Add the valid child to the children list.
+                    children.append(key)
+            # If the end symbol is not filtered out, it would be mistakenly considered as a valid child.
+            # This would skew our results in the case of a real child and an end symbol, 
+            # which should be counted as 1 but would be counted as 2.
+            # Filtering out the end symbol ensures it is treated separately as a termination symbol,
+            # allowing for the correct determination of the common prefix.
+
+            # Check if there is only one valid child in the children list.
+            if len(children) == 1:
+                # Append the valid child to the prefix.
+                prefix += children[0]
+                # Update the current node to the child node.
+                current = current[children[0]]
+            else:
+                # Exit the loop if there are more than one child, or zero valid children.
+                break
+        return prefix
 
     # don't touch below this line
 
