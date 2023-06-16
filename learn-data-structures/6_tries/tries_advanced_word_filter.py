@@ -5,7 +5,20 @@ import json
 
 class Trie:
     def advanced_find_matches(self, document, variations):
-        # ?
+        matches = set()
+        for i in range(len(document)):
+            level = self.root
+            for j in range(i, len(document)):
+                ch = document[j]
+                if ch in level: # If the character is a match, we continue to the level inside of it.
+                    level = level[ch]
+                elif ch in variations and variations[ch] in level: # If no match, we check if the character has a variation.
+                    level = level[variations[ch]]
+                else: # If the character, nor any of its variations match, we break out of the inner loop.
+                    break 
+                if self.end_symbol in level:
+                    matches.add(document[i : j + 1])
+        return matches
 
     # don't touch below this line
 
