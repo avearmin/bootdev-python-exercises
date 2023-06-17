@@ -2,7 +2,7 @@
 
 class Graph:
     def adjacent_nodes(self, node):
-        # ?
+        return list(self.graph[node])
 
     # don't touch below this line
 
