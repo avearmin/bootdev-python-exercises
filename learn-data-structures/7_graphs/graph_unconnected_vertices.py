@@ -2,7 +2,14 @@
 
 class Graph:
     def unconnected_vertices(self):
-        # ?
+        found_unconnected_vertices = []
+        for vertex, connections in self.graph.items():
+            # In Python, an empty set evaluates to False, while a non-empty set evaluates to True. 
+            # So, `if not connections` checks if the connections set is empty. It is also flexible,
+            # and would still work if connections were stored in a list.
+            if not connections: 
+                found_unconnected_vertices.append(vertex)
+        return found_unconnected_vertices
 
     # don't touch below this line
 
