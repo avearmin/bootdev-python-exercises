@@ -2,7 +2,16 @@
 
 class Graph:
     def breadth_first_search(self, v):
-        # ?
+        visited = []
+        to_visit = [v]
+        while to_visit: # While to_visit is not empty:
+            current_vertex = to_visit.pop(0) # Pop the first vertex off the to_visit list
+            visited.append(current_vertex)   # and visit it by appending it to visited.
+            neighbors = sorted(self.graph[current_vertex]) # Get a sorted() list of the neighbors of the vertex we just visited.
+            for neighbor in neighbors:
+                if neighbor not in visited and neighbor not in to_visit:
+                    to_visit.append(neighbor)
+        return visited # Once to_visit is empty, we've traversed the whole graph so just return visited.
 
     # don't touch below this line
 
