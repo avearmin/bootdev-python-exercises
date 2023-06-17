@@ -2,10 +2,18 @@
 
 class Graph:
     def __init__(self):
-        # ?
+        self.graph = {}
 
     def add_edge(self, u, v):
-        # ?
+        if u in self.graph: # If vertex u is already a key in the dictionary, add v to u's set.
+            self.graph[u].add(v)
+        else: # Otherwise, create a new set for u that contains v.
+            self.graph[u] = {v}
+        # Repeat steps 1 & 2, but swap u and v.
+        if v in self.graph:
+            self.graph[v].add(u)
+        else:
+            self.graph[v] = {u}
 
     # don't touch below this line
 
