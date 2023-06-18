@@ -2,7 +2,28 @@
 
 class Graph:
     def bfs_path(self, start, end):
-        # ?
+        visited = [] 
+        to_visit = [start] # Queue of vertices to be visited.
+        parents = {start: None} # Keep track of which children belong to which parents
+        
+        while to_visit:  # While to_visit is not empty:
+            vertex = to_visit.pop(0) # Pop the first vertex off the queue
+            visited.append(vertex)   # and visit it by appending it to visited.
+            
+            if vertex == end: # If the vertex is `end`,
+                path = []     # we intalize our path list.
+                while vertex != None:
+                    path.insert(0, vertex) # We insert the vertex to the front of the path list
+                    vertex = parents[vertex] # Our next vertex becomes the parent of the old one
+                return path # We have found the shortest path and return it
+            
+            neighbours = sorted(self.graph[vertex]) # Get a sorted() list of the neighbors of the vertex we just visited.
+            for neighbour in neighbours:
+                if neighbour not in visited and neighbour not in to_visit:
+                    to_visit.append(neighbour)
+                    parents[neighbour] = vertex # Each neighbour added to the queue store a reference to its parent
+
+        return None # If we get here, then we never found `end` and return None
 
     # don't touch below this line
 
